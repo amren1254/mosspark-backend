@@ -14,6 +14,7 @@ func main() {
 	v1 := router.Group("/api/v1")
 	{
 		v1.GET("/health-check", healthCheck)
+		v1.GET("/ping", ping)
 	}
 
 	// Start the server on port 8080
@@ -25,5 +26,11 @@ func healthCheck(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"status":  "UP",
 		"message": "Health check successful",
+	})
+}
+
+func ping(c *gin.Context){
+	c.JSON(http.StatusOK, gin.H{
+		"Ping":"Pong",
 	})
 }
